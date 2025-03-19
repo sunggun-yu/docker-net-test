@@ -1,0 +1,14 @@
+.history
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+logs/
+*.log
+.docker/
+tmp/
+temp/
+.vscode/
+.idea/
