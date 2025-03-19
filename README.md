@@ -14,30 +14,31 @@ A lightweight Alpine-based Docker image packed with network diagnostic and testi
 
 ## Included Tools
 
-| Category | Tools |
-|----------|-------|
-| **DNS Tools** | `bind-tools` (dig, nslookup), `drill` |
-| **Connection Testing** | `busybox-extras` (telnet), `ping`, `netcat-openbsd`, `nmap` |
-| **Path Analysis** | `traceroute`, `mtr`, `tcptraceroute` |
-| **Traffic Analysis** | `tcpdump` |
-| **HTTP Tools** | `curl`, `wget`, `wrk`, `apache2-utils` (ab) |
-| **Network Configuration** | `net-tools`, `iproute2`, `iptables` |
-| **Network Calculation** | `ipcalc` |
-| **SSL/TLS** | `openssl`, `ca-certificates` |
-| **Data Processing** | `jq`, `yq` |
-| **File Transfer** | `rsync` |
-| **Text Editors** | `vim`, `nano` |
+| Category                  | Tools                                                       |
+| ------------------------- | ----------------------------------------------------------- |
+| **DNS Tools**             | `bind-tools` (dig, nslookup), `drill`                       |
+| **Connection Testing**    | `busybox-extras` (telnet), `ping`, `netcat-openbsd`, `nmap` |
+| **Path Analysis**         | `traceroute`, `mtr`, `tcptraceroute`                        |
+| **Traffic Analysis**      | `tcpdump`                                                   |
+| **HTTP Tools**            | `curl`, `wget`, `wrk`, `apache2-utils` (ab)                 |
+| **Network Configuration** | `net-tools`, `iproute2`, `iptables`                         |
+| **Network Calculation**   | `ipcalc`                                                    |
+| **SSL/TLS**               | `openssl`, `ca-certificates`                                |
+| **Data Processing**       | `jq`, `yq`                                                  |
+| **Text Editors**          | `vim`, `nano`                                               |
 
 ## Usage
 
 ### Pull the Image
 
 From Docker Hub:
+
 ```bash
 docker pull sunggun/net-test:latest
 ```
 
 From GitHub Container Registry:
+
 ```bash
 docker pull ghcr.io/sunggun-yu/net-test:latest
 ```
@@ -49,6 +50,7 @@ docker run -it --rm sunggun/net-test
 ```
 
 For full network capabilities:
+
 ```bash
 docker run -it --rm --cap-add=NET_ADMIN --cap-add=NET_RAW sunggun/net-test
 ```
