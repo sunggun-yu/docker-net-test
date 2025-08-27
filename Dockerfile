@@ -1,3 +1,4 @@
+FROM fullstorydev/grpcurl:latest-alpine AS grpcurl
 FROM alpine:latest
 
 # Install all required packages
@@ -30,6 +31,8 @@ RUN apk update && apk add --no-cache \
     wrk \
     yq \
     && rm -rf /var/cache/apk/*
+
+COPY --from=grpcurl /bin/grpcurl /bin/grpcurl
 
 # Create a home directory for nobody user
 RUN mkdir -p /home/nobody && \

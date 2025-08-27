@@ -21,6 +21,7 @@ A lightweight Alpine-based Docker image packed with network diagnostic and testi
 | **Path Analysis**         | `traceroute`, `mtr`, `tcptraceroute`                        |
 | **Traffic Analysis**      | `tcpdump`                                                   |
 | **HTTP Tools**            | `curl`, `wget`, `wrk`, `apache2-utils` (ab)                 |
+| **gRPC Tools**            | `grpcurl`                                                   |
 | **Network Configuration** | `net-tools`, `iproute2`, `iptables`                         |
 | **Network Calculation**   | `ipcalc`                                                    |
 | **SSL/TLS**               | `openssl`, `ca-certificates`                                |
@@ -89,13 +90,13 @@ kubectl run net-debugger --rm -it --image=sunggun/net-test -- bash
 docker buildx create --use
 
 # Build the image for Linux AMD
-docker buildx build --platform linux/amd64 -t sunggun/net-test:latest .
+docker buildx build --platform linux/amd64 --load -t sunggun/net-test:latest .
 
 # Push the image for Linux AMD
 docker buildx build --platform linux/amd64 -t sunggun/net-test:latest --push .
 
 # Build the image for macOS ARM
-docker buildx build --platform linux/arm64/v8 -t sunggun/net-test:latest .
+docker buildx build --platform linux/arm64/v8 --load -t sunggun/net-test:latest .
 
 # Push the image for macOS ARM
 docker buildx build --platform linux/arm64/v8 -t sunggun/net-test:latest --push .
@@ -104,12 +105,14 @@ docker buildx build --platform linux/arm64/v8 -t sunggun/net-test:latest --push 
 ## Example Uses
 
 ### Test DNS Resolution
+
 ```bash
 dig example.com
 drill example.com
 ```
 
 ### Check Connectivity
+
 ```bash
 ping -c 3 8.8.8.8
 tcptraceroute google.com 443
@@ -117,27 +120,32 @@ mtr --report --count 10 example.com
 ```
 
 ### Scan Ports
+
 ```bash
 nmap -p 80,443,8080 service-name.namespace.svc.cluster.local
 ```
 
 ### Test HTTP Endpoints
+
 ```bash
 curl -v https://example.com
 wrk -t2 -c10 -d30s http://service-name:8080/health
 ```
 
 ### Analyze TLS Certificates
+
 ```bash
 openssl s_client -connect example.com:443 </dev/null | openssl x509 -noout -text
 ```
 
 ### Inspect Network Traffic
+
 ```bash
 tcpdump -i any port 80 -n
 ```
 
 ### Calculate IP Information
+
 ```bash
 ipcalc 10.0.0.0/16
 ```
